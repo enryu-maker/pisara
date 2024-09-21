@@ -1,52 +1,66 @@
-import axios from "axios";
-import { baseURL } from "../helper/Helper";
+import axios from 'axios'
+import { baseURL } from '../helper/Helper'
 
 export const getBannerAction = () => {
     const data = []
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             let response = await axios.get(baseURL + '/getbanners/', {
                 params: {
-                    type: "slider"
+                    type: 'slider'
                 }
-            });
+            })
             response.data.map((item) => {
                 data.push({
-                    img: { uri: baseURL + item.image },
+                    img: { uri: baseURL + item.image }
                 })
-            }
-            )
+            })
             dispatch({
                 type: 'GET_BANNER',
-                payload: data,
+                payload: data
             })
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 }
 export const getFeatured = () => {
-
-    return async dispatch => {
+    return async (dispatch) => {
         let Fresh = await axios.get(baseURL + '/getfeatured/', {
             params: {
-                type: "Fresh"
+                type: 'Fresh'
             }
         })
         dispatch({
             type: 'FEATURED',
-            payload: Fresh.data,
+            payload: Fresh.data
         })
-
     }
 }
 
-export const getProduct = () => {
-    return async dispatch => {
-        let response = await axios.get(baseURL + '/getall/');
+export const getProduct = (setLoading) => {
+    return async (dispatch) => {
+        let response = await axios.get(baseURL + '/getall/')
         dispatch({
             type: 'CAT',
-            payload: response?.data,
+            payload: response?.data
         })
+        console.log(response?.data)
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
+    }
+}
+
+export const getProductInfo = (id, setProduct, setLoading) => {
+    return async (dispatch) => {
+        setLoading(true)
+        try {
+            let response = await axios.get(baseURL + `/getdetails/${id}/`)
+            setProduct(response.data)
+        } catch (e) {
+            console.log(e.response.data)
+        }
+        setLoading(false)
     }
 }

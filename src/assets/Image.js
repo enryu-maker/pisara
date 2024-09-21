@@ -1,3 +1,4 @@
 export const Image = {
-    logo : require('./Logo.png')
+    logo: require('./Logo.png'),
+    foot: require('./footlogo.png')
 }
