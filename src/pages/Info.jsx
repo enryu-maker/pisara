@@ -68,14 +68,13 @@ export default function Info() {
                     <p className="text-sm text-justify mb-4">
                         {product?.description || 'No description available.'}
                     </p>
-                    <div className="flex w-full items-center space-x-1 mb-4">
+                    <div className="flex w-full justify-start items-center space-x-1 ">
                         <p className="text-gray-600">5</p>
                         <FaStar className=" text-yellow-400" />
                         <FaStar className=" text-yellow-400" />
                         <FaStar className=" text-yellow-400" />
                         <FaStar className=" text-yellow-400" />
                         <FaStar className=" text-yellow-400" />
-
                         <p className="text-gray-600">
                             {Math.floor(Math.random() * 100) + 1} Ratings
                         </p>
@@ -112,13 +111,17 @@ export default function Info() {
                         </span>
                     </p>
                     <p className="text-gray-600 mb-2">
-                        Product Code: {product?.product_code}
+                        Product Code: {pathname.split('/').slice(-1)[0]}
                     </p>
                     <button
                         disabled={product.quantity <= 0}
                         onClick={() =>
                             window.open(
-                                `https://wa.me/+918007446531?text=I am interested in ${product.name} with product id ${product.product_code}`
+                                `https://wa.me/+918007446531?text=I am interested in ${
+                                    product.name
+                                } with product id ${
+                                    pathname.split('/').slice(-1)[0]
+                                }`
                             )
                         }
                         className={`mt-4 h-12 w-[200px] ${

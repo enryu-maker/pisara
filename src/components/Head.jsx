@@ -13,7 +13,10 @@ export default function Head() {
             </div>
 
             {/* Logo and Title */}
-            <div className="flex items-center justify-center w-auto md:w-[40%]">
+            <a
+                href="/#/"
+                className="flex items-center justify-center w-auto md:w-[40%]"
+            >
                 <img
                     src={Image.logo}
                     className="h-[50px] w-[50px] md:h-[80px] md:w-[80px] mr-2"
@@ -22,7 +25,7 @@ export default function Head() {
                 <h1 className="bg-gradient-to-r from-pink-400 via-pink-400 to-pink-600 inline-block text-transparent bg-clip-text font-Poppins font-bold text-xl md:text-4xl text-center">
                     Pisara Sarees
                 </h1>
-            </div>
+            </a>
 
             {/* Social Icons */}
             <div className="flex justify-end items-center w-auto md:w-[30%] space-x-4 md:space-x-5">
